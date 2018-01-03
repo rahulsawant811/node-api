@@ -1,12 +1,18 @@
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors')
+
 const app = express();
 const port = process.env.PORT || 5000;
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-app.use(morgan('dev'))
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({encoded: false}));
+app.use(bodyParser.json());
+app.use(cors())
 
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
