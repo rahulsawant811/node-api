@@ -49,6 +49,7 @@ router.post('/', (req, res, next) => {
 
   product.save()
          .then(result => {
+           console.log(result);
            res.status(201).json({
              msg: 'Product created successfully',
              created: {
@@ -140,7 +141,7 @@ router.patch('/:productId', (req, res, next) => {
                type: 'GET',
                url: 'http://localhost:5000/products/' + id
              }
-           })
+           });
          })
          .catch(err => {
            console.log(err);

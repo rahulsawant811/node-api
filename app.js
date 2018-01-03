@@ -11,14 +11,14 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 //mongodb+srv://node-shop:<PASSWORD>@node-rest-app-g46y1.mongodb.net/test
 mongoose.connect('mongodb://node-shop:'+ process.env.MONGO_ATLAS_PWD +'@node-rest-app-shard-00-00-g46y1.mongodb.net:27017,node-rest-app-shard-00-01-g46y1.mongodb.net:27017,node-rest-app-shard-00-02-g46y1.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-app-shard-0&authSource=admin'
-//,{useMongoClient: true}
+,{useMongoClient: true}
 );
 
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
-// app.use(bodyParser.urlencoded({encoded: false}));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({encoded: false}));
+app.use(bodyParser.json());
 app.use(cors())
 
 app.use('/products', productRoutes);
